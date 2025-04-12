@@ -2,44 +2,37 @@
 #define JOYSTICK_H
 #include "pinout.h"
 
-struct JoystickReading {
+struct ControllerReading {
     double x;
     double y;
-    double z;
+    double zplus;
+    double zminus;
+    double yawplus;
+    double yawminus;
 };
 
-struct pos_t {
-    float x;
-    float y;
-    float z;
-};
-
-void joystick_to_xyz (pos_t* pos, JoystickReading* joystick){
-    float vel = 0.01;
-    if (abs(joystick -> x) > 0.1){
-        pos -> x += (joystick -> x) * vel;
-    };
-    if (abs(joystick -> y) > 0.1){
-        pos -> y += (joystick -> y) * vel;
-    };
-    pos -> z += (joystick -> z) * vel;
-};
-
-
-
-void setupJoystick() {
+void setupController() {
     pinMode(XPIN, INPUT); 
     pinMode(YPIN, INPUT); 
-    pinMode(UP_BUTTON_PIN, INPUT_PULLUP);  
-    pinMode(DOWN_BUTTON_PIN, INPUT_PULLUP); 
+    pinMode(ZPLUS_BUTTON_PIN, INPUT_PULLUP);  
+    pinMode(ZMINUS_BUTTON_PIN, INPUT_PULLUP); 
+    pinMode(YAWPLUS_BUTTON_PIN, INPUT_PULLUP);  
+    pinMode(YAWMINUS_BUTTON_PIN, INPUT_PULLUP); 
 };
 
-JoystickReading readJoystick() {
-    JoystickReading output;
-    output.x = analogRead(XPIN)/2048.0 - 1.0; 
-    output.y = analogRead(YPIN)/2048.0 - 1.0; 
-    output.z = digitalRead(UP_BUTTON_PIN) - digitalRead(DOWN_BUTTON_PIN);
-    return output;
+void readController(ControllerReading *cr) {
+    (cr -> x) = analogRead(XPIN)/2048.0 - 1.0; 
+    (cr -> y) = analogRead(YPIN)/2048.0 - 1.0; 
+    (cr -> zplus) = digitalRead(ZPLUS_BUTTON_PIN);
+    (cr -> zminus) = digitalRead(ZMINUS_BUTTON_PIN);
+    (cr -> yawplus) = digitalRead(YAWPLUS_BUTTON_PIN);
+    (cr -> yawminus) = digitalRead(YAWMINUS_BUTTON_PIN);
+};
+
+
+void convertRead(ControllerReading *cr){
+    if (abs(cr -> x) < 0.3) (cr -> x) = 0.00;
+    if (abs(cr -> y) < 0.3) (cr -> y) = 0.00;
 };
 #endif
 

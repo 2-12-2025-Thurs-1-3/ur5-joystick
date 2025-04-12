@@ -10,17 +10,14 @@
 #define ENCODER_B_PIN 5
 
 //sensor pins
-#define UP_BUTTON_PIN A11
-#define DOWN_BUTTON_PIN A12
+#define ZPLUS_BUTTON_PIN A11
+#define ZMINUS_BUTTON_PIN A12
+#define YAWPLUS_BUTTON_PIN A13
+#define YAWMINUS_BUTTON_PIN A14
+
 
 //joystick pins
 #define XPIN 1
 #define YPIN 2
-
-//gyro pins
-#define BNO08X_CS 0
-#define BNO08X_INT 9
-#define BNO08X_RESET 5
-
 
 #endif
