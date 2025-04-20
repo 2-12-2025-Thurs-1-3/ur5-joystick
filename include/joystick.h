@@ -7,8 +7,8 @@ struct ControllerReading {
     double y;
     double zplus;
     double zminus;
-    double yawplus;
-    double yawminus;
+    double vacuum;
+    double placeholder;
 };
 
 void setupController() {
@@ -16,8 +16,8 @@ void setupController() {
     pinMode(YPIN, INPUT); 
     pinMode(ZPLUS_BUTTON_PIN, INPUT_PULLUP);  
     pinMode(ZMINUS_BUTTON_PIN, INPUT_PULLUP); 
-    pinMode(YAWPLUS_BUTTON_PIN, INPUT_PULLUP);  
-    pinMode(YAWMINUS_BUTTON_PIN, INPUT_PULLUP); 
+    pinMode(VACUUM_BUTTON_PIN, INPUT_PULLUP);  
+    pinMode(PLACEHOLDER_BUTTON_PIN, INPUT_PULLUP); 
 };
 
 void readController(ControllerReading *cr) {
@@ -25,8 +25,8 @@ void readController(ControllerReading *cr) {
     (cr -> y) = analogRead(YPIN)/2048.0 - 1.0; 
     (cr -> zplus) = digitalRead(ZPLUS_BUTTON_PIN);
     (cr -> zminus) = digitalRead(ZMINUS_BUTTON_PIN);
-    (cr -> yawplus) = digitalRead(YAWPLUS_BUTTON_PIN);
-    (cr -> yawminus) = digitalRead(YAWMINUS_BUTTON_PIN);
+    (cr -> vacuum) = digitalRead(VACUUM_BUTTON_PIN);
+    (cr -> placeholder) = digitalRead(PLACEHOLDER_BUTTON_PIN);
 };
 
 

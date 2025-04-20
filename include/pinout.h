@@ -12,12 +12,12 @@
 //sensor pins
 #define ZPLUS_BUTTON_PIN A11
 #define ZMINUS_BUTTON_PIN A12
-#define YAWPLUS_BUTTON_PIN A13
-#define YAWMINUS_BUTTON_PIN A14
+#define VACUUM_BUTTON_PIN A13
+#define PLACEHOLDER_BUTTON_PIN A14
 
 
 //joystick pins
-#define XPIN 1
+#define XPIN 8
 #define YPIN 2
 
 #endif
